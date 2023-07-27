@@ -1,0 +1,54 @@
+//monsters solution
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+const int N = (int) 1e6+5;
+#define ll long long int
+#define Faster ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define INF (ll)1e16
+
+int main(){
+    Faster;
+    ll t;
+    cin>>t;
+    while(t--){
+        ll n,k;
+        cin>>n>>k;
+        vector<ll>a(n);
+        for(ll i=0;i<n;i++){
+            cin>>a[i];
+        }
+
+
+        vector<ll> ans;
+        vector<pair<ll,ll>> dex;  //vectors of pairs;;
+        for(ll i=0;i<n;i++){
+            if(a[i]%k == 0){
+                ans.push_back(i+1);
+            }
+
+            else{
+                dex.push_back(make_pair(a[i]%k,i+1));
+            }
+        }
+
+    sort(dex.begin(),dex.end(),[&](pair<int,int> x,pair<int,int> y){
+         if(x.first==y.first){
+            return (x.second<y.second);
+         }
+         return (x.first>y.first);
+      });
+
+        for(auto i:dex){
+            ans.push_back(i.second);
+        }
+
+        for(ll i=0;i<n;i++){
+            cout<<ans[i]<<" ";
+        }
+
+        cout<<endl;
+    }
+}
